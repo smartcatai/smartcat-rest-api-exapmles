@@ -1,0 +1,792 @@
+{
+	"info": {
+		"_postman_id": "22975b53-5c03-4933-9f45-4c292668e723",
+		"name": "Smartcat API demonstration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22762244"
+	},
+	"item": [
+		{
+			"name": "Create project German - English",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "projectModel",
+							"value": "{\n  \"name\": \"Example project\",\n  \"description\": \"auto created/deleted\",\n  \"sourceLanguage\": \"de\",\n  \"targetLanguages\": [\n    \"en\",\n  ],\n  \"assignToVendor\": false,\n  \"useMT\": false,\n  \"pretranslate\": true,\n  \"useTranslationMemory\": true,\n  \"minTranslationAssuranceLevel\": \"mT\",\n  \"autoPropagateRepetitions\": true,\n  \"workflowStages\": [\n      \"translation\",\n      \"editing\",\n      \"finalPageProof\",\n  ],\n  \"isForTesting\": false,\n  \"externalTag\": \"abcdef\",\n  \"customFieldValues\": {},\n  \"enableProjectTasks\":true\n}\n",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/project/create",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"project",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add document to the project",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/API/Example file.docx"
+						},
+						{
+							"key": "documentModel",
+							"value": "[\n  {\n    \"externalId\": \"12345\",\n    \"metaInfo\": \"\",\n    \"disassembleAlgorithmName\": \"\",\n    \"presetDisassembleAlgorithm\": \"\",\n    \"bilingualFileImportSetings\": {\n      \"targetSubstitutionMode\": \"all\",\n      \"lockMode\": \"none\",\n      \"confirmMode\": \"none\"\n    },\n    \"targetLanguages\": [\n      \"en\"\n    ],\n    \"enablePlaceholders\": true,\n    \"enableOcr\": true\n  }\n]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/project/document?projectId=92a7adc0-2cdc-4e67-b5cf-0dac9427f49c",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"project",
+						"document"
+					],
+					"query": [
+						{
+							"key": "projectId",
+							"value": "92a7adc0-2cdc-4e67-b5cf-0dac9427f49c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch the document details",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/document?documentId=e9764959c68863874e03f803_9",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"document"
+					],
+					"query": [
+						{
+							"key": "documentId",
+							"value": "e9764959c68863874e03f803_9",
+							"description": "Document ID is represented as int1_int2, where int1 identifies the document, and int2 identifies its target language"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch document statistics",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/document/statistics?documentId=e9764959c68863874e03f803_9&onlyExactMatches=false",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"document",
+						"statistics"
+					],
+					"query": [
+						{
+							"key": "documentId",
+							"value": "e9764959c68863874e03f803_9",
+							"description": "Document ID is represented as int1_int2, where int1 identifies the document, and int2 identifies its target language"
+						},
+						{
+							"key": "onlyExactMatches",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete document",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/document?documentIds=ac4d283343e7a3e859990cae_7",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"document"
+					],
+					"query": [
+						{
+							"key": "documentIds",
+							"value": "ac4d283343e7a3e859990cae_7",
+							"description": "Document ID is represented as int1_int2, where int1 identifies the document, and int2 identifies its target language"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new target language to the project",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/project/language?projectId=92a7adc0-2cdc-4e67-b5cf-0dac9427f49c&targetLanguage=fr&addLanguageToDocuments=true",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"project",
+						"language"
+					],
+					"query": [
+						{
+							"key": "projectId",
+							"value": "92a7adc0-2cdc-4e67-b5cf-0dac9427f49c"
+						},
+						{
+							"key": "targetLanguage",
+							"value": "fr"
+						},
+						{
+							"key": "addLanguageToDocuments",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request resulting document to export",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/document/export?documentIds=e9764959c68863874e03f803_9&mode=Current&type=Target&stageNumber=1",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"document",
+						"export"
+					],
+					"query": [
+						{
+							"key": "documentIds",
+							"value": "e9764959c68863874e03f803_9",
+							"description": "Document ID is represented as int1_int2, where int1 identifies the document, and int2 identifies its target language"
+						},
+						{
+							"key": "mode",
+							"value": "Current",
+							"description": "Segment export mode: Current - The current translation, the segment status notwithstanding (what is shown in the editor) Confirmed - Confirmed segments at the specific stage, as defined by the StageNumber parameter. If the stage is not specified, export all segments confirmed at any stage (this behavior is similar to exporting files using the Smartcat interface) Complete - Only completed segments, that is the segments that have passed all the stages and were confirmed at the last one"
+						},
+						{
+							"key": "type",
+							"value": "Target",
+							"description": "Export document type, by default Smartcat.AppIntegrations.Contracts.ExportDocumentRequestType.Target"
+						},
+						{
+							"key": "stageNumber",
+							"value": "1",
+							"description": "Workflow stage number when downloading an intermediate result"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download resulting document",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/document/export/52e8eb22-1271-4ec4-8d6f-2fa141aeceac",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"document",
+						"export",
+						"52e8eb22-1271-4ec4-8d6f-2fa141aeceac"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch the segments history",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/project/92a7adc0-2cdc-4e67-b5cf-0dac9427f49c/segments/revisions",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"project",
+						"92a7adc0-2cdc-4e67-b5cf-0dac9427f49c",
+						"segments",
+						"revisions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch project statistics",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v2/project/92a7adc0-2cdc-4e67-b5cf-0dac9427f49c/statistics?onlyExactMatches=true",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v2",
+						"project",
+						"92a7adc0-2cdc-4e67-b5cf-0dac9427f49c",
+						"statistics"
+					],
+					"query": [
+						{
+							"key": "onlyExactMatches",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Receive statistics for the completed parts of the project",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/project/b4d784fc-2b93-41b4-990d-00380813c7ce/completedWorkStatistics",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"project",
+						"b4d784fc-2b93-41b4-990d-00380813c7ce",
+						"completedWorkStatistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch glossaries from the current account",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/glossaries",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"glossaries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch the list of account projects",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v2/project/list?createdByUserId=&assignedToUserId=&projectName=test&externalTag&clientIds&offset&limit=10",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v2",
+						"project",
+						"list"
+					],
+					"query": [
+						{
+							"key": "createdByUserId",
+							"value": "",
+							"description": "ID of the user who created the project"
+						},
+						{
+							"key": "assignedToUserId",
+							"value": "",
+							"description": "User ID for filtering by assignment"
+						},
+						{
+							"key": "projectName",
+							"value": "test",
+							"description": "Partial project name"
+						},
+						{
+							"key": "externalTag",
+							"value": null,
+							"description": "Partial external tag of the project"
+						},
+						{
+							"key": "clientIds",
+							"value": null,
+							"description": "Comma-separated client IDs"
+						},
+						{
+							"key": "offset",
+							"value": null,
+							"description": "Number of skipped items"
+						},
+						{
+							"key": "limit",
+							"value": "10",
+							"description": "Maximum returned items (not more than 100)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch the available TMs filtered per account",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/translationmemory?batchSize=0",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"translationmemory"
+					],
+					"query": [
+						{
+							"key": "batchSize",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Export TMX files from the TM database",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://smartcat.ai/api/integration/v1/translationmemory/3671fd28-68e5-425d-97e9-ac6159dff2c4/file?exportMode=TmxDefault&withTags=true",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"v1",
+						"translationmemory",
+						"3671fd28-68e5-425d-97e9-ac6159dff2c4",
+						"file"
+					],
+					"query": [
+						{
+							"key": "exportMode",
+							"value": "TmxDefault"
+						},
+						{
+							"key": "withTags",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Import TMX files to a TM",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "YOUR_ACCOUNT_ID",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_API_KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tmxFile",
+							"type": "file",
+							"src": "/C:/API/German-2022-08-29-export.tmx"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://smartcat.ai/api/integration//v1/translationmemory/3671fd28-68e5-425d-97e9-ac6159dff2c4?replaceAllContent=true",
+					"protocol": "https",
+					"host": [
+						"smartcat",
+						"ai"
+					],
+					"path": [
+						"api",
+						"integration",
+						"",
+						"v1",
+						"translationmemory",
+						"3671fd28-68e5-425d-97e9-ac6159dff2c4"
+					],
+					"query": [
+						{
+							"key": "replaceAllContent",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
